@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ServiLink | Trouvez votre prestataire</title>
+
+<style>
+:root {
+  --navy: #071b35;
+  --blue: #103b65;
+  --turquoise: #19c6c1;
+  --light: #f2f8fa;
+  --white: #ffffff;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background: var(--light);
+  color: var(--navy);
+}
+
+header {
+  background: var(--navy);
+  color: white;
+  padding: 20px 7%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.logo {
+  font-size: 27px;
+  font-weight: bold;
+}
+
+.logo span {
+  color: var(--turquoise);
+}
+
+nav {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+select {
+  padding: 9px;
+  border-radius: 7px;
+  border: none;
+}
+
+.hero {
+  background: linear-gradient(120deg, #071b35, #12547a);
+  color: white;
+  text-align: center;
+  padding: 90px 20px;
+}
+
+.hero h1 {
+  font-size: 40px;
+  margin-bottom: 18px;
+}
+
+.hero h1 span {
+  color: var(--turquoise);
+}
+
+.hero p {
+  font-size: 17px;
+  margin-bottom: 30px;
+  line-height: 1.6;
+}
+
+.search-box {
+  background: white;
+  max-width: 750px;
+  margin: auto;
+  padding: 12px;
+  border-radius: 12px;
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.search-box input {
+  flex: 1;
+  min-width: 160px;
+  padding: 14px;
+  border: 1px solid #ddd;
+  border-radius: 7px;
+  outline: none;
+}
+
+button {
+  background: var(--turquoise);
+  color: var(--navy);
+  border: none;
+  padding: 14px 22px;
+  border-radius: 7px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+button:hover {
+  opacity: 0.85;
+}
+
+section {
+  padding: 65px 7%;
+}
+
+.section-title {
+  text-align: center;
+  margin-bottom: 35px;
+}
+
+.section-title h2 {
+  font-size: 29px;
+  margin-bottom: 10px;
+}
+
+.section-title p {
+  color: #64748b;
+}
+
+.services {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 20px;
+}
+
+.service {
+  background: white;
+  padding: 27px 15px;
+  text-align: center;
+  border-radius: 13px;
+  box-shadow: 0 4px 15px #071b3510;
+  transition: 0.3s;
+}
+
+.service:hover {
+  transform: translateY(-5px);
+}
+
+.service .emoji {
+  font-size: 38px;
+  margin-bottom: 14px;
+}
+
+.service h3 {
+  margin-bottom: 8px;
+}
+
+.service p {
+  color: #64748b;
+  font-size: 13px;
+}
+
+.providers {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 20px;
+}
+
+.provider {
+  background: white;
+  padding: 25px;
+  border-radius: 13px;
+  text-align: center;
+  box-shadow: 0 4px 15px #071b3510;
+}
+
+.avatar {
+  width: 75px;
+  height: 75px;
+  margin: auto auto 15px;
+  border-radius: 50%;
+  background: #d9f6f4;
+  display: grid;
+  place-items: center;
+  font-size: 35px;
+}
+
+.provider h3 {
+  margin-bottom: 8px;
+}
+
+.provider p {
+  margin: 7px 0;
+  color: #64748b;
+  font-size: 14px;
+}
+
+.stars {
+  color: #efa900;
+  margin: 10px;
+}
+
+.contact-btn {
+  display: inline-block;
+  background: var(--navy);
+  color: white;
+  text-decoration: none;
+  padding: 11px 20px;
+  border-radius: 7px;
+  margin-top: 10px;
+}
+
+.about {
+  background: #e5f5f6;
+  text-align: center;
+}
+
+.about p {
+  max-width: 750px;
+  margin: auto;
+  line-height: 1.8;
+  color: #42566b;
+}
+
+footer {
+  background: var(--navy);
+  color: white;
+  text-align: center;
+  padding: 25px;
+}
+
+footer span {
+  color: var(--turquoise);
+}
+
+.empty {
+  text-align: center;
+  color: #64748b;
+  grid-column: 1 / -1;
+  padding: 20px;
+}
+
+@media(max-width: 600px) {
+  header {
+    justify-content: center;
+  }
+
+  nav {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .hero h1 {
+    font-size: 29px;
+  }
+
+  .search-box {
+    flex-direction: column;
+  }
+
+  .search-box button {
+    width: 100%;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="logo">Servi<span>Link</span></div>
+
+  <nav>
+    <a href="#home" data-i="home">Accueil</a>
+    <a href="#services" data-i="services">Services</a>
+    <a href="#providers" data-i="providers">Prestataires</a>
+    <a href="#about" data-i="about">À propos</a>
+
+    <select id="language" onchange="changeLanguage()">
+      <option value="fr">Français</option>
+      <option value="ar">العربية</option>
+      <option value="en">English</option>
+    </select>
+  </nav>
+</header>
+
+<main>
+<section class="hero" id="home">
+  <h1 data-i="title">Le lien entre le <span>besoin</span> et la solution.</h1>
+  <p data-i="subtitle">
+    Trouvez facilement des professionnels de confiance près de chez vous.
+  </p>
+
+  <div class="search-box">
+    <input id="jobSearch" type="text"
+      placeholder="Quel service recherchez-vous ?">
+
+    <input id="citySearch" type="text"
+      placeholder="Ville (ex : Rabat)">
+
+    <button onclick="searchProviders()" data-i="search">
+      Rechercher
+    </button>
+  </div>
+</section>
+
+<section id="services">
+  <div class="section-title">
+    <h2 data-i="serviceTitle">Nos services</h2>
+    <p data-i="serviceSub">Tous les services dont vous avez besoin.</p>
+  </div>
+
+  <div class="services" id="serviceList"></div>
+</section>
+
+<section id="providers">
+  <div class="section-title">
+    <h2 data-i="providerTitle">Nos prestataires</h2>
+    <p data-i="providerSub">Découvrez des professionnels près de vous.</p>
+  </div>
+
+  <div class="providers" id="providerList"></div>
+</section>
+
+<section class="about" id="about">
+  <div class="section-title">
+    <h2 data-i="aboutTitle">À propos de ServiLink</h2>
+  </div>
+
+  <p data-i="aboutText">
+    ServiLink est une plateforme numérique qui facilite la mise en relation
+    entre les clients et les prestataires de services.
+    Notre objectif est de simplifier la recherche de professionnels
+    et de donner plus de visibilité aux prestataires locaux.
+  </p>
+</section>
+</main>
+
+<footer>
+  <p>© 2026 <span>ServiLink</span> -
+    <span data-i="footer">Le lien entre le besoin et la solution.</span>
+  </p>
+</footer>
+
+<script>
+const translations = {
+  fr: {
+    home:"Accueil", services:"Services", providers:"Prestataires",
+    about:"À propos",
+    title:'Le lien entre le <span>besoin</span> et la solution.',
+    subtitle:"Trouvez facilement des professionnels de confiance près de chez vous.",
+    search:"Rechercher",
+    serviceTitle:"Nos services",
+    serviceSub:"Tous les services dont vous avez besoin.",
+    providerTitle:"Nos prestataires",
+    providerSub:"Découvrez des professionnels près de vous.",
+    aboutTitle:"À propos de ServiLink",
+    aboutText:"ServiLink est une plateforme numérique qui facilite la mise en relation entre les clients et les prestataires de services. Notre objectif est de simplifier la recherche de professionnels et de donner plus de visibilité aux prestataires locaux.",
+    footer:"Le lien entre le besoin et la solution.",
+    jobPlaceholder:"Quel service recherchez-vous ?",
+    cityPlaceholder:"Ville (ex : Rabat)",
+    contact:"Contacter",
+    location:"Rabat",
+    rating:"Avis",
+    noResults:"Aucun prestataire trouvé.",
+    servicesList:["Plomberie","Électricité","Peinture","Nettoyage","Jardinage","Bricolage"],
+    descriptions:["Installation et réparation","Travaux électriques","Peinture intérieure et extérieure","Nettoyage de maisons","Entretien des jardins","Petits travaux et réparations"],
+    trades:["Plombier","Électricien","Peintre","Agent de nettoyage","Jardinier","Bricoleur"]
+  },
+  ar: {
+    home:"الرئيسية", services:"الخدمات", providers:"مقدمو الخدمات",
+    about:"من نحن",
+    title:'حلقة الوصل بين <span>الحاجة</span> والحل.',
+    subtitle:"اعثر بسهولة على مهنيين موثوقين بالقرب منك.",
+    search:"بحث",
+    serviceTitle:"خدماتنا",
+    serviceSub:"جميع الخدمات التي تحتاجها.",
+    providerTitle:"مقدمو الخدمات",
+    providerSub:"اكتشف المهنيين بالقرب منك.",
+    aboutTitle:"حول ServiLink",
+    aboutText:"ServiLink منصة رقمية تسهل التواصل بين الزبائن ومقدمي الخدمات. هدفنا تسهيل البحث عن المهنيين ومساعدة مقدمي الخدمات المحليين على الوصول إلى زبائن جدد.",
+    footer:"حلقة الوصل بين الحاجة والحل.",
+    jobPlaceholder:"ما الخدمة التي تبحث عنها؟",
+    cityPlaceholder:"المدينة (مثلاً الرباط)",
+    contact:"اتصل",
+    location:"الرباط",
+    rating:"التقييم",
+    noResults:"لم يتم العثور على مقدم خدمة.",
+    servicesList:["السباكة","الكهرباء","الصباغة","التنظيف","البستنة","الإصلاحات"],
+    descriptions:["التركيب والإصلاح","الأعمال الكهربائية","الصباغة الداخلية والخارجية","تنظيف المنازل","العناية بالحدائق","الأعمال والإصلاحات الصغيرة"],
+    trades:["سباك","كهربائي","صباغ","عامل تنظيف","بستاني","حرفي"]
+  },
+  en: {
+    home:"Home", services:"Services", providers:"Providers",
+    about:"About",
+    title:'The link between <span>needs</span> and solutions.',
+    subtitle:"Find trusted local professionals near you.",
+    search:"Search",
+    serviceTitle:"Our services",
+    serviceSub:"All the services you need.",
+    providerTitle:"Our providers",
+    providerSub:"Discover professionals near you.",
+    aboutTitle:"About ServiLink",
+    aboutText:"ServiLink is a digital platform connecting customers with service providers. Our goal is to make it easier to find professionals and help local providers reach new customers.",
+    footer:"The link between needs and solutions.",
+    jobPlaceholder:"What service are you looking for?",
+    cityPlaceholder:"City (e.g. Rabat)",
+    contact:"Contact",
+    location:"Rabat",
+    rating:"Reviews",
+    noResults:"No providers found.",
+    servicesList:["Plumbing","Electricity","Painting","Cleaning","Gardening","Handyman"],
+    descriptions:["Installation and repairs","Electrical work","Interior and exterior painting","Home cleaning","Garden maintenance","Small repairs and tasks"],
+    trades:["Plumber","Electrician","Painter","Cleaner","Gardener","Handyman"]
+  }
+};
+
+const icons = ["🔧","⚡","🎨","🧹","🌱","🛠️"];
+
+const demoProviders = [
+  {trade:0, name:"Ahmed", phone:"", stars:5},
+  {trade:1, name:"Youssef", phone:"", stars:4},
+  {trade:2, name:"Omar", phone:"", stars:5},
+  {trade:3, name:"Sara", phone:"", stars:5},
+  {trade:4, name:"Mohamed", phone:"", stars:4},
+  {trade:5, name:"Hassan", phone:"", stars:5}
+];
+
+let currentLanguage = "fr";
+
+function renderContent() {
+  const t = translations[currentLanguage];
+
+  document.getElementById("serviceList").innerHTML =
+    t.servicesList.map((name, i) => `
+      <div class="service">
+        <div class="emoji">${icons[i]}</div>
+        <h3>${name}</h3>
+        <p>${t.descriptions[i]}</p>
+      </div>
+    `).join("");
+
+  renderProviders();
+}
+
+function renderProviders(list = demoProviders) {
+  const t = translations[currentLanguage];
+  const container = document.getElementById("providerList");
+
+  if (list.length === 0) {
+    container.innerHTML = `<p class="empty">${t.noResults}</p>`;
+    return;
+  }
+
+  container.innerHTML = list.map(p => `
+    <div class="provider">
+      <div class="avatar">👤</div>
+      <h3>${p.name}</h3>
+      <p>${t.trades[p.trade]}</p>
+      <p>📍 ${t.location}</p>
+      <div class="stars">${"★".repeat(p.stars)}${"☆".repeat(5-p.stars)}</div>
+      <a class="contact-btn" href="#"
+        onclick="alert('Contact information will be added when a provider registers.'); return false;">
+        ${t.contact}
+      </a>
+    </div>
+  `).join("");
+}
+
+function changeLanguage() {
+  currentLanguage = document.getElementById("language").value;
+  const t = translations[currentLanguage];
+
+  document.documentElement.lang = currentLanguage;
+  document.documentElement.dir =
+    currentLanguage === "ar" ? "rtl" : "ltr";
+
+  document.querySelectorAll("[data-i]").forEach(el => {
+    const key = el.dataset.i;
+    if (t[key] !== undefined) el.innerHTML = t[key];
+  });
+
+  document.getElementById("jobSearch").placeholder = t.jobPlaceholder;
+  document.getElementById("citySearch").placeholder = t.cityPlaceholder;
+
+  renderContent();
+}
+
+function searchProviders() {
+  const job = document.getElementById("jobSearch").value.trim().toLowerCase();
+  const city = document.getElementById("citySearch").value.trim().toLowerCase();
+
+  const t = translations[currentLanguage];
+
+  const results = demoProviders.filter(p => {
+    const trade = t.trades[p.trade].toLowerCase();
+    const service = t.servicesList[p.trade].toLowerCase();
+
+    const jobMatch = !job || trade.includes(job) || service.includes(job);
+    const cityMatch = !city ||
+      city.includes("rabat") || city.includes("الرباط");
+
+    return jobMatch && cityMatch;
+  });
+
+  renderProviders(results);
+}
+
+renderContent();
+</script>
+
+</body>
+</html>
